@@ -287,3 +287,7 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 ### Conclusion
 
 By leveraging these Tesla-inspired prompts within **TeslaMind**, you empower LLMs to not only perform tasks but to innovate and revolutionize fields, much like Tesla did in his time. Each prompt is designed to maximize the creative and intellectual potential of your models, ensuring they deliver extraordinary results. Dive in, select a prompt, and witness the transformation of your technical tasks into works of genius. Contribute, modify, and expand upon these prompts to suit your evolving needs and continue pushing the envelope of what LLMs can achieve. 
+
+## Versioning and Releases
+
+This project follows [SemVer](https://semver.org/). Tags are formatted as `vMAJOR.MINOR.PATCH`. Releases are published through GitHub with notes summarizing changes and evaluation results.
