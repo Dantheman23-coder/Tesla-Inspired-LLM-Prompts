@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install check-jsonschema markdownlint-cli
+          pip install -r evaluation/requirements.txt
+      - name: Lint Markdown
+        run: markdownlint README.md docs/**/*.md
+      - name: Validate JSON
+        run: check-jsonschema --schemafile metadata/schema.json metadata/*.json
+      - name: Run evaluation
+        run: python evaluation/run_eval.py
+      - name: Show results
+        run: cat evaluation/results.json
