@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Prompt Metadata",
+  "type": "object",
+  "properties": {
+    "title": {"type": "string"},
+    "version": {"type": "string"},
+    "domain": {"type": "string"},
+    "length_tokens": {"type": "integer"},
+    "license": {"type": "string"},
+    "description": {"type": "string"},
+    "prompt_path": {"type": "string"}
+  },
+  "required": ["title", "version", "license", "prompt_path"]
+}
