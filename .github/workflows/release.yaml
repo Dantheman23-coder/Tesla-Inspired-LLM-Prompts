@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install mkdocs
+        run: pip install mkdocs mkdocs-material
+      - name: Build docs
+        run: mkdocs build --strict
+      - name: Run evaluation
+        run: |
+          python evaluation/run_eval.py
+          cat evaluation/results.json
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            site/**
+            evaluation/results.json
+

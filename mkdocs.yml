@@ -1,0 +1,6 @@
+site_name: TeslaMind Prompt Library
+theme:
+  name: material
+docs_dir: docs
+nav:
+  - Home: index.md
