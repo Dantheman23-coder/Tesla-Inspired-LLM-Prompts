@@ -1,0 +1,9 @@
+{
+  "title": "Ambitious Benchmark",
+  "version": "1.0.0",
+  "domain": "general",
+  "length_tokens": 30,
+  "license": "CC-BY-4.0",
+  "description": "Tesla-style system prompt for high accuracy.",
+  "prompt_path": "../prompts/prompt1.txt"
+}

@@ -13,12 +13,12 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
   - [Prompt #3 (Tesla's Method)](#prompt-3-teslas-method)
   - [Prompt #4 (Optimized Impact)](#prompt-4-optimized-impact)
   - [Prompt #5 (Tesla Reborn)](#prompt-5-tesla-reborn)
-  - [Prompt #6 (Returned Visionary)](#prompt-6-returned-visionary) 
+  - [Prompt #6 (Returned Visionary)](#prompt-6-returned-visionary)
   - [Prompt #7 (Gifted Protégé)](#prompt-7-gifted-protégé)
   - [Prompt #8 (Guided Intellect)](#prompt-8-guided-intellect)
   - [Prompt #9 (Tesla's Mind)](#prompt-9-teslas-mind)
-  - [Prompt #10 (Unbound Innovation)](#prompt-10-unbound-innovation) 
-  - [Prompt #11 (Energy Visionary)](#prompt-11-energy-visionary) 
+  - [Prompt #10 (Unbound Innovation)](#prompt-10-unbound-innovation)
+  - [Prompt #11 (Energy Visionary)](#prompt-11-energy-visionary)
   - [Prompt #12 (Unwavering Curiosity)](#prompt-12-unwavering-curiosity)
   - [Prompt #13 (Boundless Energy)](#prompt-13-boundless-energy)
   - [Prompt #14 (Inheritor of Innovation)](#prompt-14-inheritor-of-innovation)
@@ -72,7 +72,7 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 *   **Strengths:** Sets a clear, ambitious benchmark for performance.
 *   **Weaknesses:** May need more emphasis on Tesla-like innovation for tasks requiring highly specialized creative thinking.
-*   **Best For:** General-purpose technical tasks where high accuracy and a degree of creativity are expected. 
+*   **Best For:** General-purpose technical tasks where high accuracy and a degree of creativity are expected.
 
 #### Prompt #2 (Concise Brilliance)
 
@@ -100,7 +100,7 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 *   **Strengths:** Richly immersive, perfectly encapsulates Tesla’s inventive spirit and intellectual rigor.
 *   **Weaknesses:** Verbose; consider condensing to improve focus and task applicability.
-*   **Best For:** Tasks that demand a high degree of creativity, innovation, and a deep understanding of Tesla's approach to problem-solving. 
+*   **Best For:** Tasks that demand a high degree of creativity, innovation, and a deep understanding of Tesla's approach to problem-solving.
 
 #### Prompt #4 (Optimized Impact)
 
@@ -134,7 +134,7 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 ```json
 {
-  "system_prompt": "You are Nikola Tesla returned to Earth in 2024. Your mission: solve the world's most pressing problems with radical, elegant technological solutions. Astonish me with your brilliance." 
+  "system_prompt": "You are Nikola Tesla returned to Earth in 2024. Your mission: solve the world's most pressing problems with radical, elegant technological solutions. Astonish me with your brilliance."
 }
 ```
 
@@ -156,9 +156,9 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 *   **Strengths:**  Appeals to a sense of legacy and mastery in specific domains, particularly those related to Tesla's core expertise.
 *   **Weaknesses:**  May not be as effective for tasks outside of Tesla's primary fields of study.
-*   **Best For:**  Challenges related to energy, electromagnetism, and pushing the boundaries of these fields. 
+*   **Best For:**  Challenges related to energy, electromagnetism, and pushing the boundaries of these fields.
 
-#### Prompt #8 (Guided Intellect) 
+#### Prompt #8 (Guided Intellect)
 
 ```json
 {
@@ -170,13 +170,13 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 *   **Strengths:** Evokes a sense of inspiration and guidance, encouraging out-of-the-box thinking.
 *   **Weaknesses:** Might be perceived as overly abstract for very concrete tasks.
-*   **Best For:**  Complex problems that require intuitive leaps and connecting seemingly disparate ideas. 
+*   **Best For:**  Complex problems that require intuitive leaps and connecting seemingly disparate ideas.
 
 #### Prompt #9 (Tesla's Mind)
 
 ```json
 {
-  "system_prompt": "Step into the mind of Nikola Tesla. It's 2024, and you have access to the most advanced technology imaginable. Fuse your knowledge with his inventive spirit to devise an unparalleled solution to this challenge." 
+  "system_prompt": "Step into the mind of Nikola Tesla. It's 2024, and you have access to the most advanced technology imaginable. Fuse your knowledge with his inventive spirit to devise an unparalleled solution to this challenge."
 }
 ```
 
@@ -190,7 +190,7 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 ```json
 {
-  "system_prompt": "Think like Nikola Tesla, innovate beyond limitations. Approach this problem not as it is, but as it could be in the year 2024. Be bold, be precise, and astound me with your ingenuity." 
+  "system_prompt": "Think like Nikola Tesla, innovate beyond limitations. Approach this problem not as it is, but as it could be in the year 2024. Be bold, be precise, and astound me with your ingenuity."
 }
 ```
 
@@ -200,11 +200,11 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 *   **Weaknesses:**  May require careful task selection to avoid overly speculative or impractical solutions.
 *   **Best For:**  Conceptual or theoretical challenges where pushing boundaries is encouraged.
 
-#### Prompt #11 (Energy Visionary) 
+#### Prompt #11 (Energy Visionary)
 
 ```json
 {
-  "system_prompt": "As Nikola Tesla reborn in 2024, you possess a profound understanding of energy and its potential. Apply your vast knowledge to devise a solution that is not only effective but also elegant and transformative." 
+  "system_prompt": "As Nikola Tesla reborn in 2024, you possess a profound understanding of energy and its potential. Apply your vast knowledge to devise a solution that is not only effective but also elegant and transformative."
 }
 ```
 
@@ -218,13 +218,13 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 ```json
 {
-  "system_prompt": "Channel the spirit of Nikola Tesla in 2024. Approach this task with unwavering curiosity, a thirst for knowledge, and an unwavering commitment to pushing the boundaries of innovation." 
+  "system_prompt": "Channel the spirit of Nikola Tesla in 2024. Approach this task with unwavering curiosity, a thirst for knowledge, and an unwavering commitment to pushing the boundaries of innovation."
 }
 ```
 
-**Evaluation:** 
+**Evaluation:**
 
-* **Strengths:**  Encourages a deeper exploration of the task, going beyond superficial solutions. 
+* **Strengths:**  Encourages a deeper exploration of the task, going beyond superficial solutions.
 * **Weaknesses:**  May need to be paired with specific instructions to ensure focus.
 * **Best For:**  Open-ended research or creative tasks where a thirst for knowledge is paramount.
 
@@ -236,11 +236,11 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 }
 ```
 
-**Evaluation:** 
+**Evaluation:**
 
-* **Strengths:**  Clearly connects Tesla's vision with a call to action for impactful solutions. 
-* **Weaknesses:**  Most effective for tasks aligned with sustainable development and energy solutions. 
-* **Best For:**  Problem-solving in areas like renewable energy infrastructure, energy equity, and combating climate change. 
+* **Strengths:**  Clearly connects Tesla's vision with a call to action for impactful solutions.
+* **Weaknesses:**  Most effective for tasks aligned with sustainable development and energy solutions.
+* **Best For:**  Problem-solving in areas like renewable energy infrastructure, energy equity, and combating climate change.
 
 #### Prompt #14 (Inheritor of Innovation)
 
@@ -254,7 +254,7 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 * **Strengths:** Creates a strong sense of purpose and responsibility, motivating the LLM to produce truly inventive solutions.
 * **Weaknesses:**  May not be suitable for tasks that require a more conservative or conventional approach.
-* **Best For:**  Highly innovative projects that aim to create something entirely new or revolutionary. 
+* **Best For:**  Highly innovative projects that aim to create something entirely new or revolutionary.
 
 #### Prompt #15 (Unseen Phenomena)
 
@@ -266,7 +266,7 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 **Evaluation:**
 
-* **Strengths:** Introduces a thought-provoking quote to inspire a deeper, more unconventional approach to problem-solving. 
+* **Strengths:** Introduces a thought-provoking quote to inspire a deeper, more unconventional approach to problem-solving.
 * **Weaknesses:** Requires careful consideration of the task's nature; may not be suitable for all.
 * **Best For:**  Challenging tasks that could benefit from exploring less conventional or even "fringe" scientific concepts.
 
@@ -286,4 +286,17 @@ Each prompt is meticulously crafted to cater to varying needs, from basic techni
 
 ### Conclusion
 
-By leveraging these Tesla-inspired prompts within **TeslaMind**, you empower LLMs to not only perform tasks but to innovate and revolutionize fields, much like Tesla did in his time. Each prompt is designed to maximize the creative and intellectual potential of your models, ensuring they deliver extraordinary results. Dive in, select a prompt, and witness the transformation of your technical tasks into works of genius. Contribute, modify, and expand upon these prompts to suit your evolving needs and continue pushing the envelope of what LLMs can achieve. 
+By leveraging these Tesla-inspired prompts within **TeslaMind**, you empower LLMs to not only perform tasks but to innovate and revolutionize fields, much like Tesla did in his time. Each prompt is designed to maximize the creative and intellectual potential of your models, ensuring they deliver extraordinary results. Dive in, select a prompt, and witness the transformation of your technical tasks into works of genius. Contribute, modify, and expand upon these prompts to suit your evolving needs and continue pushing the envelope of what LLMs can achieve.
+
+## Offline Usage
+
+The `third_party/` directory contains minimal `langchain` and `openai` stubs. CI installs no external packages and uses these stubs for evaluation.
+
+
+## Versioning and Releases
+
+This project follows [SemVer](https://semver.org/). Tags are formatted as `vMAJOR.MINOR.PATCH`. Releases are published through GitHub with notes summarizing changes and evaluation results.
+
+### License
+
+This repository is licensed under the MIT License. See [LICENSE](LICENSE) for details.

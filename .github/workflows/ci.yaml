@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install Python dependencies
+        run: |
+          pip install --no-index -r evaluation/requirements.txt
+      - name: Lint Markdown
+        run: python scripts/lint_markdown.py
+      - name: Validate JSON
+        run: python scripts/validate_metadata.py
+      - name: Run evaluation
+        run: python evaluation/run_eval.py
+      - name: Show results
+        run: cat evaluation/results.json
