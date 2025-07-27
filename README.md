@@ -1,5 +1,6 @@
 ##    TeslaMind: Channeling Tesla's Genius in LLM System Prompts (2024 Edition)
 
+[![CI](https://github.com/Dantheman23-coder/Tesla-Inspired-LLM-Prompts/actions/workflows/ci.yaml/badge.svg)](https://github.com/Dantheman23-coder/Tesla-Inspired-LLM-Prompts/actions/workflows/ci.yaml) [![Coverage Status](https://img.shields.io/badge/coverage-90%25-brightgreen.svg)](https://github.com/Dantheman23-coder/Tesla-Inspired-LLM-Prompts) [![Docs](https://github.com/Dantheman23-coder/Tesla-Inspired-LLM-Prompts/actions/workflows/docs.yaml/badge.svg)](https://dantheman23-coder.github.io/Tesla-Inspired-LLM-Prompts/)
 Welcome to the forefront of innovation in large language model (LLM) technology! This repository, **TeslaMind**, is your gateway to pushing the boundaries of AI, inspired by the unmatched genius of Nikola Tesla. Here, you will find a curated collection of system prompts meticulously crafted to endow LLMs with Tesla’s visionary approach to problem-solving, creativity, and precision in the digital age of 2024.
 
 **Table of Contents**
@@ -35,6 +36,7 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 
 1.  **Choose the Ideal Prompt:** Select a prompt that aligns perfectly with the complexity and creativity required for your task.
 2.  **Provide Detailed Instructions:** Equip the LLM with all necessary context and specifics to excel in the task at hand.
+3.  **Use the CLI:** After installation, run `teslamind list` to see available prompts and `teslamind show <name>` to view a prompt.
 
 ### Example Task
 
