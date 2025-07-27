@@ -1,3 +1,4 @@
-# TeslaMind Prompt Library
+# TeslaMind
 
-Welcome to the Tesla-inspired prompt library.
+TeslaMind is a lightweight toolkit and prompt collection inspired by Nikola Tesla's approach to innovation.
+Use it to explore personas, modes, and reusable prompt templates for your own LLM projects.
