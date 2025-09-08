@@ -8,5 +8,6 @@ nav:
   - Modes: modes.md
   - Personas: personas.md
   - Scoring: score.md
+  - Advanced: advanced.md
   - API Reference: api.md
   - Contributing: contribute.md
