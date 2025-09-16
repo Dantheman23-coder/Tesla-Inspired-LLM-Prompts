@@ -45,13 +45,16 @@ Beyond the core prompt library, TeslaMind ships with experimental modules for
 power users:
 
 - **Self-looping refinement** – iteratively polish prompts via a user-supplied
-  refinement function and optionally capture the full refinement history.
-- **Federated evaluation** – run prompt assessments across logical shards with a
-  drop-in interface for future distributed backends.
-- **RLHF trainer** – apply reward signals from feedback providers and keep
-  prompts whose rewards exceed a configurable threshold.
-- **Clinical safety filter** – block or mask configurable medical terms to avoid
-  generating sensitive clinical guidance.
+  refinement function, enforce minimum score deltas, and inspect structured
+  ``RefinementHistory`` records.
+- **Federated evaluation** – run prompt assessments across logical shards,
+  capture per-shard metadata, and compute aggregate metrics through a
+  ``FederatedEvaluationReport``.
+- **RLHF trainer** – record structured feedback events, compute summary
+  statistics via ``TrainingSummary``, and persist reward history while filtering
+  prompts by configurable thresholds.
+- **Clinical safety filter** – mask or block configurable medical terms and
+  optionally return a detailed ``SafetyReport``.
 
 See the [advanced feature documentation](docs/advanced.md) for usage examples.
 
