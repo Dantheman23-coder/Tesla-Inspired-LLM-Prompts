@@ -7,6 +7,7 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 
 - [Objectives](#objectives)
 - [Guide to Using This Repository](#guide-to-using-this-repository)
+- [Advanced Features](#advanced-features)
 - [Example Task](#example-task)
 - [Detailed Prompt Breakdown](#detailed-prompt-breakdown)
   - [Prompt #1 (Ambitious Benchmark)](#prompt-1-ambitious-benchmark)
@@ -37,6 +38,25 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 1.  **Choose the Ideal Prompt:** Select a prompt that aligns perfectly with the complexity and creativity required for your task.
 2.  **Provide Detailed Instructions:** Equip the LLM with all necessary context and specifics to excel in the task at hand.
 3.  **Use the CLI:** After installation, run `teslamind list` to see available prompts and `teslamind show <name>` to view a prompt.
+
+### Advanced Features
+
+Beyond the core prompt library, TeslaMind ships with experimental modules for
+power users:
+
+- **Self-looping refinement** – iteratively polish prompts via a user-supplied
+  refinement function, optionally capturing the full refinement history for
+  later analysis.
+- **Federated evaluation** – run prompt assessments across logical shards while
+  preserving a drop-in interface for future distributed backends and capturing
+  per-shard metadata through a ``FederatedEvaluationReport``.
+- **RLHF trainer** – apply reward signals from feedback providers, persist
+  reward history, and keep prompts whose rewards exceed a configurable
+  threshold via a ``TrainingSummary``.
+- **Clinical safety filter** – block or mask configurable medical terms to
+  avoid unsafe usage while optionally returning a detailed ``SafetyReport``.
+
+See the [advanced feature documentation](docs/advanced.md) for usage examples.
 
 ### Example Task
 
