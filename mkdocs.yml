@@ -5,8 +5,10 @@ nav:
   - Home: index.md
   - Usage: usage.md
   - CLI: cli.md
+  - Advanced: advanced.md
   - Modes: modes.md
   - Personas: personas.md
   - Scoring: score.md
+  - Developer Prompts: dev_prompts.md
   - API Reference: api.md
   - Contributing: contribute.md

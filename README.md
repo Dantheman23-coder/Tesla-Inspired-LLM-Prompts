@@ -7,6 +7,8 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 
 - [Objectives](#objectives)
 - [Guide to Using This Repository](#guide-to-using-this-repository)
+- [Developer System Prompts](#developer-system-prompts)
+- [Advanced Features](#advanced-features)
 - [Example Task](#example-task)
 - [Detailed Prompt Breakdown](#detailed-prompt-breakdown)
   - [Prompt #1 (Ambitious Benchmark)](#prompt-1-ambitious-benchmark)
@@ -37,6 +39,110 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 1.  **Choose the Ideal Prompt:** Select a prompt that aligns perfectly with the complexity and creativity required for your task.
 2.  **Provide Detailed Instructions:** Equip the LLM with all necessary context and specifics to excel in the task at hand.
 3.  **Use the CLI:** After installation, run `teslamind list` to see available prompts and `teslamind show <name>` to view a prompt.
+
+### Developer System Prompts
+
+For engineering-heavy workflows, TeslaMind now offers ten DM-approved
+`<DEV_MSG>` templates that keep responses IMDM-compliant while channeling
+Tesla’s bold technical instincts. Inspect them with
+`teslamind show <cli-name>` and review the dedicated
+[developer prompt guide](docs/dev_prompts.md) for practice scenarios and
+example tasks.
+
+| CLI name | Prompt title | Primary focus |
+| --- | --- | --- |
+| `dev_prompt_dynamo_core` | Dynamo Core Architect | Resilient energy and platform architectures |
+| `dev_prompt_quantum_flux` | Quantum Flux Navigator | Signal control and interference prevention |
+| `dev_prompt_resonant_network` | Resonant Network Orchestrator | Wireless coordination and shard timing |
+| `dev_prompt_aether_engineer` | Aether Systems Engineer | Cross-domain hardware-software synthesis |
+| `dev_prompt_magnetic_foundry` | Magnetic Foundry Steward | Manufacturing pipelines and thermal discipline |
+| `dev_prompt_luminal_cartographer` | Luminal Cartographer | Observability meshes and analytics cadence |
+| `dev_prompt_plasma_cohort` | Plasma Cohort Conductor | Cross-functional delivery and risk surfacing |
+| `dev_prompt_singularity_bridge` | Singularity Bridge Designer | Moonshot roadmaps and technology decisions |
+| `dev_prompt_stellar_laboratory` | Stellar Laboratory Curator | Experimentation rigor and data science safety |
+| `dev_prompt_temporal_harmonics` | Temporal Harmonics Strategist | Scenario planning and roadmap governance |
+
+### Stylistic Modes
+
+TeslaMind’s stylistic modes wrap tasks in Tesla-grade tone and guardrails.
+Explore them with the CLI:
+
+- `teslamind modes list` – see available slugs and short descriptions.
+- `teslamind modes show energy` – print detailed guidance for a mode.
+- `teslamind modes apply visionary "Design a moonshot roadmap"` – preview the
+  rendered wrapper for a task.
+
+| Mode slug | Title | Summary |
+| --- | --- | --- |
+| `energy` | Energy Mode | High-voltage execution with measurable impact |
+| `patent` | Patent Mode | Formal disclosures with claim-ready precision |
+| `invention` | Invention Mode | Divergent brainstorming with prototyping cues |
+| `visionary` | Visionary Mode | Futuristic narratives tied to credible delivery |
+| `hyperscience` | Hyperscience Mode | Laboratory-grade exposition and theory |
+| `coop` | Cooperative Mode | Inclusive facilitation for cross-functional teams |
+
+Each mode exposes `Mode.apply(task)` in Python so you can attach the same
+guardrails when composing prompts programmatically.
+
+### Personas
+
+Personas provide a narrative lens and DM-ready guardrails for different
+audiences. Query them with:
+
+- `teslamind personas list` – inspect the built-in personas.
+- `teslamind personas show practical-engineer` – print a full system prompt for
+  the persona.
+
+| Persona slug | Persona | Perspective |
+| --- | --- | --- |
+| `visionary-inventor` | Visionary Inventor | Ambitious moonshot storytelling grounded in Tesla’s ethos |
+| `practical-engineer` | Practical Engineer | Constraint-aware builder obsessed with instrumentation |
+| `curious-student` | Curious Student | Inquisitive learner who unpacks concepts in layers |
+
+Use `Persona.apply(task)` to wrap instructions in the persona voice.
+
+### Compose prompts end-to-end
+
+Blend templates, personas, and modes directly from the CLI or Python API:
+
+```bash
+teslamind compose "Blueprint a wireless gigafactory" --persona visionary-inventor --mode visionary
+```
+
+```python
+from teslamind import compose_prompt
+
+prompt = compose_prompt(
+    "Blueprint a wireless gigafactory",
+    persona="practical-engineer",
+    mode="energy",
+)
+print(prompt.text)
+```
+
+The composed prompt stitches together the persona system message, base template,
+and stylistic guardrails so teams can ship aligned instructions without manual
+copy/paste.
+
+### Advanced Features
+
+Beyond the core prompt library, TeslaMind ships with experimental helpers for
+researchers who want to iterate on prompts programmatically. Each utility lives
+in the ``teslamind`` package and can be used independently or combined inside
+your own pipelines:
+
+- **Self-looping refinement** – repeatedly call a refinement function and
+  capture a scored history of improved prompts for later review.
+- **Federated evaluation** – evaluate prompts across logical shards and collect
+  shard-specific reports alongside aggregate metrics.
+- **RLHF training stub** – filter prompts by applying reward signals from human
+  feedback or heuristic scorers while persisting the reward history.
+- **Clinical safety filter** – detect sensitive medical terms and optionally
+  mask or block them during experimentation.
+
+See the [advanced feature documentation](docs/advanced.md) for expanded
+examples and integration tips.
+
 
 ### Example Task
 
