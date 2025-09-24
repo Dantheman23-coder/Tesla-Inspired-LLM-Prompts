@@ -1,4 +1,9 @@
 """Hyperscience mode."""
 
+from .catalog import get_mode
+
+
 def hyperscience_prompt(task: str) -> str:
-    return f"[Hyperscience Mode] {task}"
+    """Compatibility wrapper matching :func:`teslamind.modes.hyperscience_prompt`."""
+
+    return get_mode("hyperscience").apply(task)
