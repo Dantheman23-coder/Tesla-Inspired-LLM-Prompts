@@ -1,4 +1,9 @@
 """Invention mode."""
 
+from .catalog import get_mode
+
+
 def invention_prompt(task: str) -> str:
-    return f"[Invention Mode] {task}"
+    """Compatibility wrapper that mirrors :func:`teslamind.modes.invention_prompt`."""
+
+    return get_mode("invention").apply(task)

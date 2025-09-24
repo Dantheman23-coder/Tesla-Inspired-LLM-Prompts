@@ -1,4 +1,9 @@
 """Patent mode."""
 
+from .catalog import get_mode
+
+
 def patent_prompt(task: str) -> str:
-    return f"[Patent Mode] {task}"
+    """Compatibility wrapper that mirrors :func:`teslamind.modes.patent_prompt`."""
+
+    return get_mode("patent").apply(task)
