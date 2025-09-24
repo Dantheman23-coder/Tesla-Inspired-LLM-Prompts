@@ -84,3 +84,17 @@ def test_filter_clinical_content_reports_multiple_matches():
     assert len(report.violations) == 3
     assert report.blocked_terms == {"diagnosis", "treatment"}
     assert filter_clinical_content("General guidance") == "General guidance"
+
+
+def test_filter_clinical_content_reports_without_masking():
+    report = filter_clinical_content(
+        "Seek treatment before offering diagnosis.",
+        mask=False,
+        report=True,
+    )
+    assert report.masked is False
+    assert report.text == "Seek treatment before offering diagnosis."
+    assert {violation.term for violation in report.violations} == {
+        "treatment",
+        "diagnosis",
+    }

@@ -81,7 +81,7 @@ def filter_clinical_content(
                 search_start = index + len(replacement)
             else:
                 search_start = index + len(term)
-        if violations and not mask:
+        if violations and not mask and not report:
             raise ValueError(f"Clinical term '{term}' detected")
 
     masked = mask and bool(violations)

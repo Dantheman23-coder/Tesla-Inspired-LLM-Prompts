@@ -72,7 +72,9 @@ trainer.last_rewards  # [1.0, -1.0]
 
 ## Clinical safety filter
 `filter_clinical_content` blocks or masks configurable medical terms and can
-return a `SafetyReport` detailing every violation.
+return a `SafetyReport` detailing every violation. Reporting works even when
+masking is disabled so you can audit flagged content before deciding how to
+handle it.
 
 ```python
 from teslamind import filter_clinical_content
