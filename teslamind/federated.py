@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Any, Callable, Dict, Iterable, List, Sequence
+from typing import Any, Callable, Iterable, Sequence
 
 
 @dataclass
@@ -20,21 +20,37 @@ class EvaluationRecord:
 class FederatedEvaluationReport:
     """Collection of evaluation records with optional aggregate data."""
 
-    records: List[EvaluationRecord]
+    records: list[EvaluationRecord]
     aggregate: Any | None = None
 
-    def flatten(self) -> List[Any]:
+    def __len__(self) -> int:
+        """Return how many evaluation records are stored."""
+
+        return len(self.records)
+
+    def flatten(self) -> list[Any]:
         """Return just the evaluation results, preserving input order."""
 
         return [record.result for record in self.records]
 
-    def by_shard(self) -> Dict[int, List[EvaluationRecord]]:
+    def prompts(self) -> list[str]:
+        """Return prompts in the order they were evaluated."""
+
+        return [record.prompt for record in self.records]
+
+    def by_shard(self) -> dict[int, list[EvaluationRecord]]:
         """Group evaluation records by shard identifier."""
 
-        grouped: Dict[int, List[EvaluationRecord]] = {}
+        grouped: dict[int, list[EvaluationRecord]] = {}
         for record in self.records:
             grouped.setdefault(record.shard_id, []).append(record)
         return grouped
+
+    @property
+    def shard_count(self) -> int:
+        """Return how many shards contributed to the report."""
+
+        return len(self.by_shard())
 
 
 def run_federated_evaluation(
@@ -44,8 +60,9 @@ def run_federated_evaluation(
     shards: int = 1,
     shard_size: int | None = None,
     aggregate: Callable[[Sequence[Any]], Any] | None = None,
+    aggregate_default: Any | None = None,
     with_metadata: bool = False,
-) -> List[Any] | FederatedEvaluationReport:
+) -> list[Any] | FederatedEvaluationReport:
     """Run evaluations across logical shards.
 
     Parameters
@@ -64,6 +81,10 @@ def run_federated_evaluation(
     aggregate:
         Optional callable receiving the flattened evaluation results and
         returning an aggregate metric (e.g., an average score).
+    aggregate_default:
+        Value returned when ``aggregate`` is provided but no prompts were
+        evaluated. This avoids calling reducers that expect at least one
+        result.
     with_metadata:
         When ``True`` a :class:`FederatedEvaluationReport` containing shard
         metadata is returned. Otherwise only the flattened results are
@@ -76,12 +97,12 @@ def run_federated_evaluation(
     if shard_size is not None and shard_size < 1:
         raise ValueError("shard_size must be positive when provided")
     if not prompt_list:
-        records: List[EvaluationRecord] = []
+        records: list[EvaluationRecord] = []
     else:
         effective_shard_size = shard_size or math.ceil(len(prompt_list) / shards)
         if effective_shard_size < 1:
             effective_shard_size = 1
-        records = []
+        records: list[EvaluationRecord] = []
         shard_index = 0
         for start in range(0, len(prompt_list), effective_shard_size):
             shard_prompts = prompt_list[start : start + effective_shard_size]
@@ -95,7 +116,10 @@ def run_federated_evaluation(
                 )
             shard_index += 1
     flattened = [record.result for record in records]
-    aggregate_value = aggregate(flattened) if aggregate else None
+    if aggregate:
+        aggregate_value = aggregate(flattened) if flattened else aggregate_default
+    else:
+        aggregate_value = None
     if with_metadata:
         return FederatedEvaluationReport(records=records, aggregate=aggregate_value)
     return flattened

@@ -37,11 +37,26 @@ class TrainingSummary:
             return 0.0
         return sum(event.reward for event in self.events) / len(self.events)
 
+    @property
+    def rewards(self) -> List[float]:
+        """Return the raw reward values for each feedback event."""
+
+        return [event.reward for event in self.events]
+
+    @property
+    def acceptance_rate(self) -> float:
+        """Return the share of prompts that met the acceptance threshold."""
+
+        if not self.events:
+            return 0.0
+        return len(self.accepted_prompts) / len(self.events)
+
     def to_dict(self) -> dict[str, Any]:
         """Serialize the summary to a dictionary for reporting."""
 
         return {
             "threshold": self.threshold,
+            "acceptance_rate": self.acceptance_rate,
             "events": [
                 {
                     "prompt": event.prompt,
@@ -52,6 +67,8 @@ class TrainingSummary:
                 for event in self.events
             ],
             "average_reward": self.average_reward,
+            "accepted_prompts": self.accepted_prompts,
+            "rejected_prompts": self.rejected_prompts,
         }
 
 
@@ -70,6 +87,7 @@ class RLHFTrainer:
         self.inclusive = inclusive
         self.last_rewards: List[float] = []
         self.history: List[TrainingSummary] = []
+        self.last_summary: TrainingSummary | None = None
 
     def _is_accepted(self, reward: float) -> bool:
         return reward >= self.threshold if self.inclusive else reward > self.threshold
@@ -104,6 +122,7 @@ class RLHFTrainer:
         summary = TrainingSummary(events=events, threshold=self.threshold)
         self.last_rewards = [event.reward for event in events]
         self.history.append(summary)
+        self.last_summary = summary
         if return_summary:
             return summary
         return summary.accepted_prompts

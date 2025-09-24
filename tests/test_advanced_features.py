@@ -1,10 +1,12 @@
 import pytest
 
 from teslamind import (
-    SelfLoopingPromptGenerator,
-    run_federated_evaluation,
+    DEFAULT_BLOCKED_TERMS,
+    FederatedEvaluationReport,
     RLHFTrainer,
+    SelfLoopingPromptGenerator,
     filter_clinical_content,
+    run_federated_evaluation,
 )
 
 
@@ -26,6 +28,11 @@ def test_self_looping_prompt_generator_tracks_history():
     assert history.prompts()[0] == "start"
     assert history.prompts()[-1] == final_prompt
     assert generator.last_history is history
+    assert [step.prompt for step in history.improvements()] == [
+        "start done",
+        "start done done",
+    ]
+    assert history.stop_reason == "complete"
 
 
 def test_run_federated_evaluation_with_metadata():
@@ -42,9 +49,30 @@ def test_run_federated_evaluation_with_metadata():
     grouped = report.by_shard()
     assert set(grouped) == {0, 1}
     assert [record.prompt for record in grouped[0]] == ["a", "bb"]
+    assert len(report) == len(prompts)
+    assert report.prompts() == prompts
+    assert report.shard_count == 2
     # Convenience mode without metadata still returns flattened results
     no_metadata = run_federated_evaluation(prompts, len, shards=2)
     assert no_metadata == [1, 2, 3, 4]
+
+
+def test_run_federated_evaluation_handles_empty_prompts():
+    def explode(_: list[int]) -> int:
+        raise AssertionError("aggregate should not be invoked for empty input")
+
+    report = run_federated_evaluation(
+        [],
+        len,
+        shards=3,
+        aggregate=explode,
+        aggregate_default=0,
+        with_metadata=True,
+    )
+    assert isinstance(report, FederatedEvaluationReport)
+    assert len(report) == 0
+    assert report.aggregate == 0
+    assert report.flatten() == []
 
 
 def test_rlhf_trainer_summary_and_history():
@@ -68,6 +96,12 @@ def test_rlhf_trainer_summary_and_history():
     summary_dict = summary.to_dict()
     assert summary_dict["average_reward"] == pytest.approx(summary.average_reward)
     assert len(summary_dict["events"]) == 3
+    assert summary.rewards == [1.0, -1.0, 1.0]
+    assert pytest.approx(summary.acceptance_rate, rel=1e-6) == 2 / 3
+    assert summary_dict["acceptance_rate"] == summary.acceptance_rate
+    assert summary_dict["accepted_prompts"] == summary.accepted_prompts
+    assert summary_dict["rejected_prompts"] == summary.rejected_prompts
+    assert trainer.last_summary is summary
 
 
 def test_filter_clinical_content_reports_multiple_matches():
@@ -82,7 +116,10 @@ def test_filter_clinical_content_reports_multiple_matches():
     assert report.text.lower().count("diagnosis") == 0
     assert report.text.lower().count("treatment") == 0
     assert len(report.violations) == 3
+    assert report.violation_count == 3
+    assert report.has_violations() is True
     assert report.blocked_terms == {"diagnosis", "treatment"}
+    assert any(violation.span()[0] == 0 for violation in report.violations)
     assert filter_clinical_content("General guidance") == "General guidance"
 
 
@@ -98,3 +135,31 @@ def test_filter_clinical_content_reports_without_masking():
         "treatment",
         "diagnosis",
     }
+    assert report.violation_count == 2
+
+
+def test_filter_clinical_content_case_sensitive_toggle():
+    assert "diagnosis" in DEFAULT_BLOCKED_TERMS
+    insensitive = filter_clinical_content(
+        "diagnosis requires treatment.",
+        blocked_terms=["Diagnosis"],
+        report=True,
+    )
+    assert insensitive.violation_count == 1
+
+    case_sensitive_none = filter_clinical_content(
+        "diagnosis requires treatment.",
+        blocked_terms=["Diagnosis"],
+        report=True,
+        case_sensitive=True,
+    )
+    assert case_sensitive_none.violation_count == 0
+
+    case_sensitive_match = filter_clinical_content(
+        "Diagnosis requires treatment.",
+        blocked_terms=["Diagnosis"],
+        report=True,
+        case_sensitive=True,
+    )
+    assert case_sensitive_match.violation_count == 1
+    assert case_sensitive_match.violations[0].match == "Diagnosis"

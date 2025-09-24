@@ -42,21 +42,30 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 ### Advanced Features
 
 Beyond the core prompt library, TeslaMind ships with experimental modules for
-power users:
+power users. Each utility lives in the ``teslamind`` package and can be used
+independently or combined inside your own pipelines:
 
 - **Self-looping refinement** – iteratively polish prompts via a user-supplied
   refinement function, optionally capturing the full refinement history for
-  later analysis.
+  later analysis. ``RefinementHistory`` now exposes helpers such as
+  ``stop_reason`` and ``improvements()`` so you can quickly audit how a prompt
+  evolved.
 - **Federated evaluation** – run prompt assessments across logical shards while
-  preserving a drop-in interface for future distributed backends and capturing
-  per-shard metadata through a ``FederatedEvaluationReport``.
+  preserving a drop-in interface for future distributed backends. The helper
+  returns a ``FederatedEvaluationReport`` that records shard metadata, offers
+  convenience accessors like ``prompts()`` and ``shard_count``, and supports
+  aggregate fallbacks when no prompts are supplied.
 - **RLHF trainer** – apply reward signals from feedback providers, persist
   reward history, and keep prompts whose rewards exceed a configurable
-  threshold via a ``TrainingSummary``.
+  threshold via a ``TrainingSummary``. Summaries expose acceptance rates and
+  the full reward trace for downstream reporting.
 - **Clinical safety filter** – block or mask configurable medical terms to
   avoid unsafe usage while optionally returning a detailed ``SafetyReport``.
+  The filter can operate in case-sensitive or case-insensitive modes, and
+  reports include convenience properties for quickly enumerating violations.
 
-See the [advanced feature documentation](docs/advanced.md) for usage examples.
+See the [advanced feature documentation](docs/advanced.md) for expanded
+examples and integration tips.
 
 ### Example Task
 

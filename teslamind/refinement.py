@@ -1,9 +1,8 @@
 """Self-looping prompt refinement utilities."""
 
 from __future__ import annotations
-
 from dataclasses import dataclass
-from typing import Callable, List, Tuple, Union
+from typing import Callable
 
 
 @dataclass
@@ -36,7 +35,7 @@ class RefinementStep:
 class RefinementHistory:
     """Structured record of a refinement run."""
 
-    steps: List[RefinementStep]
+    steps: list[RefinementStep]
 
     @property
     def final_prompt(self) -> str:
@@ -61,18 +60,32 @@ class RefinementHistory:
 
         return sum(1 for step in self.steps if step.improved)
 
-    def prompts(self) -> List[str]:
+    def prompts(self) -> list[str]:
         """Return the prompt text at each recorded step."""
 
         return [step.prompt for step in self.steps]
 
+    def improvements(self) -> list[RefinementStep]:
+        """Return only the steps that resulted in improvements."""
 
-RefinementReturn = Union[
-    Tuple[str, bool],
-    Tuple[str, bool, str | None],
-    Tuple[str, bool, str | None, float | None],
-    RefinementStep,
-]
+        return [step for step in self.steps if step.improved]
+
+    @property
+    def stop_reason(self) -> str | None:
+        """Return the feedback associated with the stopping condition."""
+
+        for step in reversed(self.steps):
+            if not step.improved and step.feedback:
+                return step.feedback
+        return None
+
+
+RefinementReturn = (
+    tuple[str, bool]
+    | tuple[str, bool, str | None]
+    | tuple[str, bool, str | None, float | None]
+    | RefinementStep
+)
 
 
 class SelfLoopingPromptGenerator:
@@ -133,7 +146,7 @@ class SelfLoopingPromptGenerator:
         refine_func: Callable[[str], RefinementReturn],
         *,
         return_history: bool = False,
-    ) -> str | Tuple[str, RefinementHistory]:
+    ) -> str | tuple[str, RefinementHistory]:
         """Run the self-looping refinement process.
 
         Parameters
