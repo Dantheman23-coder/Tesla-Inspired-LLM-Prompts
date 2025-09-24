@@ -7,6 +7,8 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 
 - [Objectives](#objectives)
 - [Guide to Using This Repository](#guide-to-using-this-repository)
+- [Developer System Prompts](#developer-system-prompts)
+- [Advanced Features](#advanced-features)
 - [Example Task](#example-task)
 - [Detailed Prompt Breakdown](#detailed-prompt-breakdown)
   - [Prompt #1 (Ambitious Benchmark)](#prompt-1-ambitious-benchmark)
@@ -37,6 +39,62 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 1.  **Choose the Ideal Prompt:** Select a prompt that aligns perfectly with the complexity and creativity required for your task.
 2.  **Provide Detailed Instructions:** Equip the LLM with all necessary context and specifics to excel in the task at hand.
 3.  **Use the CLI:** After installation, run `teslamind list` to see available prompts and `teslamind show <name>` to view a prompt.
+
+### Developer System Prompts
+
+For engineering-heavy workflows, TeslaMind now offers ten DM-approved
+`<DEV_MSG>` templates that keep responses IMDM-compliant while channeling
+Tesla’s bold technical instincts. Inspect them with
+`teslamind show <cli-name>` and review the dedicated
+[developer prompt guide](docs/dev_prompts.md) for practice scenarios and
+example tasks.
+
+| CLI name | Prompt title | Primary focus |
+| --- | --- | --- |
+| `dev_prompt_dynamo_core` | Dynamo Core Architect | Resilient energy and platform architectures |
+| `dev_prompt_quantum_flux` | Quantum Flux Navigator | Signal control and interference prevention |
+| `dev_prompt_resonant_network` | Resonant Network Orchestrator | Wireless coordination and shard timing |
+| `dev_prompt_aether_engineer` | Aether Systems Engineer | Cross-domain hardware-software synthesis |
+| `dev_prompt_magnetic_foundry` | Magnetic Foundry Steward | Manufacturing pipelines and thermal discipline |
+| `dev_prompt_luminal_cartographer` | Luminal Cartographer | Observability meshes and analytics cadence |
+| `dev_prompt_plasma_cohort` | Plasma Cohort Conductor | Cross-functional delivery and risk surfacing |
+| `dev_prompt_singularity_bridge` | Singularity Bridge Designer | Moonshot roadmaps and technology decisions |
+| `dev_prompt_stellar_laboratory` | Stellar Laboratory Curator | Experimentation rigor and data science safety |
+| `dev_prompt_temporal_harmonics` | Temporal Harmonics Strategist | Scenario planning and roadmap governance |
+
+### Advanced Features
+
+Beyond the core prompt library, TeslaMind ships with experimental modules for
+power users. Each utility lives in the ``teslamind`` package and can be used
+independently or combined inside your own pipelines:
+
+- **Self-looping refinement** – iteratively polish prompts via a user-supplied
+  refinement function, optionally capturing the full refinement history for
+  later analysis. ``RefinementHistory`` now exposes helpers such as
+  ``stop_reason`` and ``improvements()`` so you can quickly audit how a prompt
+  evolved.
+- **Federated evaluation** – run prompt assessments across logical shards while
+  preserving a drop-in interface for future distributed backends. The helper
+  returns a ``FederatedEvaluationReport`` that records shard metadata, offers
+  convenience accessors like ``prompts()`` and ``shard_count``, and supports
+  aggregate fallbacks when no prompts are supplied.
+- **RLHF trainer** – apply reward signals from feedback providers, persist
+  reward history, and keep prompts whose rewards exceed a configurable
+  threshold via a ``TrainingSummary``. Summaries expose acceptance rates and
+  the full reward trace for downstream reporting.
+- **Clinical safety filter** – block or mask configurable medical terms to
+  avoid unsafe usage while optionally returning a detailed ``SafetyReport``.
+  The filter can operate in case-sensitive or case-insensitive modes, and
+  reports include convenience properties for quickly enumerating violations.
+
+See the [advanced feature documentation](docs/advanced.md) for expanded
+examples and integration tips.
+
+> **Compatibility note**
+> Historical scripts imported these helpers from modules such as
+> `refinement.py` or `rlhf.py` at the repository root. These shims now forward
+> to the `teslamind` package so both the legacy and new import styles continue
+> to work without modification.
 
 ### Example Task
 
