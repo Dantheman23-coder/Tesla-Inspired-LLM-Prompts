@@ -10,7 +10,17 @@ authors = [{name="TeslaMind"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "openai>=1.0.0",
+    "tinydb>=4.8.0",
+    "pydantic-settings>=2.0.0",
+]
+
+[project.optional-dependencies]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.5",
+]
 
 [project.urls]
 Homepage = "https://github.com/Dantheman23-coder/Tesla-Inspired-LLM-Prompts"
