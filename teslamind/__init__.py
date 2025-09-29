@@ -3,17 +3,27 @@
 from .version import __version__
 from .prompt import Prompt
 from .persona import Persona
-from .refinement import SelfLoopingPromptGenerator
-from .federated import run_federated_evaluation
-from .rlhf import RLHFTrainer
-from .safety import filter_clinical_content
+from .advanced import (
+    FederatedShardResult,
+    RLHFResult,
+    RLHFTrainer,
+    RefinementHistory,
+    SelfLoopingPromptGenerator,
+    filter_clinical_content,
+    mask_sensitive_terms,
+    run_federated_evaluation,
+)
 
 __all__ = [
     "Prompt",
     "Persona",
     "__version__",
     "SelfLoopingPromptGenerator",
+    "RefinementHistory",
     "run_federated_evaluation",
+    "FederatedShardResult",
     "RLHFTrainer",
+    "RLHFResult",
     "filter_clinical_content",
+    "mask_sensitive_terms",
 ]
