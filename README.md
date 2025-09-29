@@ -42,18 +42,29 @@ Welcome to the forefront of innovation in large language model (LLM) technology!
 ### Advanced Features
 
 Beyond the core prompt library, TeslaMind ships with experimental modules for
-power users:
+power users. These helpers live in the `teslamind.advanced` namespace and can
+be imported directly from the package root:
 
-- **Self-looping refinement** – iteratively polish prompts via a user-supplied
-  refinement function.
+- **Self-looping refinement** – iteratively polish prompts via a
+  user-supplied refinement function while capturing a history of each
+  iteration.
 - **Federated evaluation** – run prompt assessments across logical shards,
-  preserving an interface for future distributed backends.
-- **RLHF trainer** – apply reward signals from feedback providers to retain only
-  positively scored prompts.
-- **Clinical safety filter** – block configurable medical terms to avoid
-  generating sensitive clinical guidance.
+  collecting structured shard outputs for audit trails.
+- **RLHF trainer** – apply reward signals from feedback providers with
+  configurable thresholds and optional reward histories.
+- **Clinical safety filter** – block or mask configurable medical terms to
+  avoid generating sensitive clinical guidance.
 
-See the [advanced feature documentation](docs/advanced.md) for usage examples.
+See the [advanced feature documentation](docs/advanced.md) for detailed usage
+examples, including guidance on combining these modules with the TeslaMind
+modes and personas system.
+
+### Developer Prompt Catalog
+
+The CLI exposes a lightweight developer catalog alongside the standard prompt
+set. Run `teslamind list --developer` to inspect audit-oriented prompts such as
+reward model reviews or clinical safety checklists. Use
+`teslamind show <name> --developer` to fetch the full text.
 
 ### Example Task
 
